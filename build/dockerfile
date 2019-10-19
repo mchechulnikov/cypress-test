@@ -1,0 +1,11 @@
+FROM cypress/browsers:node12.6.0-chrome77
+
+WORKDIR /workdir
+
+COPY package.json .
+RUN npm install
+
+COPY ./cypress.json .
+COPY ./cypress ./cypress
+
+ENTRYPOINT [ "npm", "run", "cypress:run" ]
